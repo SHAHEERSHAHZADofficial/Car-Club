@@ -11,7 +11,7 @@ const Welcome = ({navigation}) => {
         }]}>
           <View style={{ flex: 2, backgroundColor: "#C0C0C0" }} >
 
-<View style={{padding:160}}>
+<View style={{padding:75}}>
 
 </View>
 
@@ -36,6 +36,12 @@ const Welcome = ({navigation}) => {
                  {/* top: 40, */}
             <Text style={{ fontSize: 20, color: '#000', textAlign: "center", marginTop: 12 }}>Log In </Text>
           </TouchableOpacity>
+
+
+          {/* <View style={{padding:10}}>
+
+</View> */}
+
 
           </View>
         </View>
