@@ -6,7 +6,7 @@ import { useRoute } from '@react-navigation/native';
 const Packages = ({navigation}) => {
   const route = useRoute()
 
-    const [Package, setPackage] = useState([])
+    const [Package, setPackage] = useState([null])
     useEffect(() => {
       
     // let {id} = route.params
@@ -16,7 +16,7 @@ const Packages = ({navigation}) => {
           .then(res => {
               const Category = res.data;
         // console.info(Category.CarSubCategories)   
-        setPackage([Category.Packages])
+        setPackage(Category.Packages)
         console.log(Category.Packages)
         // console.log(SubCategory,"=====================>","Category")
     

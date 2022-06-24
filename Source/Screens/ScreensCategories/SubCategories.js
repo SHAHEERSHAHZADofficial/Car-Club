@@ -16,7 +16,7 @@ let {searchId} = route.params
       .then(res => {
           const Category = res.data;
     // console.info(Category.CarSubCategories)   
-    setSubCategory([Category.CarSubCategories])
+    setSubCategory(Category.CarSubCategories)
     
     // console.log(SubCategory,"=====================>","Category")
 

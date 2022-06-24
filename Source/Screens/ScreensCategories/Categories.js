@@ -17,7 +17,7 @@ const Categories =  ({ navigation }) => {
         }).catch((error) => {
           console.warn(error)
         })
-        console.log(Categories)
+        // console.log(Categories)
 
       }, [])
 
@@ -30,9 +30,7 @@ const Categories =  ({ navigation }) => {
       <ScrollView>
     <View>
 
-      <View style={{backgroundColor:"#077ee6",flexDirection:"row",marginBottom:20,marginTop:10 }}>
-      <Text style={{fontSize:30,fontWeight:'bold',color:"white",flex:1,textAlign:"center"}}> Categories </Text>
-      </View>
+
 
       {
           Categories[0] === null ? (
