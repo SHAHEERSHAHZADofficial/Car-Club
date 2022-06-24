@@ -9,11 +9,16 @@ import SignIn from '../Auth/SignIn'
 import ForgetPassword from '../Auth/ForgetPassword'
 import VerifyAcount from '../Auth/VerifyAcount'
 import ForgetPasswordPart2 from '../Auth/ForgetPasswordPart2'
-
+import SubCategories from '../Screens/ScreensCategories/SubCategories'
+import Categories from '../Screens/ScreensCategories/Categories'
+import Packages from '../Screens/ScreensCategories/Packages'
+import Booking from '../Screens/ScreensCategories/Booking/Booking'
 const Stack = createNativeStackNavigator()
 
 export const Authentication = () => {
   return (
+    <NavigationContainer>
+
     <Stack.Navigator
       screenOptions={() => ({
         headerShown: true,
@@ -31,32 +36,40 @@ export const Authentication = () => {
       <Stack.Screen name='Verify_Your_Account' component={VerifyAcount} />
 
     </Stack.Navigator>
+    </NavigationContainer>
   )
 }
 
-export const AuthenticationPart2 = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={() => ({
-        headerShown: true,
-        headerTintColor: '#077ee6',
-        headerTitleAlign: 'center',
-        headerTitleStyle: {fontSize: 25},
-      })}
-    >
-    </Stack.Navigator>
-  )
-}
+// export const SubCategory = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={() => ({
+//         headerShown: true,
+//         headerTintColor: '#077ee6',
+//         headerTitleAlign: 'center',
+//         headerTitleStyle: {fontSize: 25},
+//       })}
+//     >
+//         <Stack.Screen name='Sub' component={SubCategories} />
+//     </Stack.Navigator>
+//   )
+// }
 
 export const Routes = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={() => ({headerShown: false})}>
-        <Stack.Screen name='Authentication' component={Authentication} />
-        <Stack.Screen name='AuthenticationPart2' component={AuthenticationPart2} />
+      <Stack.Navigator screenOptions={() => ({headerShown: true,headerTintColor: '#077ee6',
+        headerTitleAlign: 'center',
+        headerTitleStyle: {fontSize: 25}})}>
 
-        {/* <Stack.Screen name='Verify_Your_Account' component={VerifyAcount} />
-      <Stack.Screen name='Forget Password' component={ForgetPassword} /> */}
+        <Stack.Screen name='Categories' component={Categories} />
+
+        <Stack.Screen name='SubCategories' component={SubCategories} />
+
+<Stack.Screen name='Booking' component={Booking}/>
+
+        <Stack.Screen name='Packages' component={Packages} />
+
       </Stack.Navigator>
     </NavigationContainer>
   )

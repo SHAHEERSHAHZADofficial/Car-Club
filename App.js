@@ -1,12 +1,9 @@
 
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Routes } from './Source/Config/Route'
-// import {Authentication} from './Source/Config/Route'
-// import {Auth} from "./Source/Config/Route"
-// import PayWithCard from './Source/Screens/PayWithCard'
-// import TRANSACTIONSUCCESSFUL from './Source/Screens/TRANSACTIONSUCCESSFUL.js'
-// import FeedBack from './Source/Screens/FeedBack'
+import { Authentication, Routes } from './Source/Config/Route'
+import Categories from './Source/Screens/ScreensCategories/Categories'
+import Welcome from './Source/Welcome'
 const App = () => {
   return (
       <Routes/>
