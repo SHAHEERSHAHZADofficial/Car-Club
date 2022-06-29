@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useRoute } from '@react-navigation/native';
@@ -18,7 +18,6 @@ const SubCategories = ({ navigation }) => {
         // console.info(Category.CarSubCategories)   
         setSubCategory(Category.CarSubCategories)
 
-        // console.log(SubCategory,"=====================>","Category")
 
       }).catch((error) => {
         console.error(error.message)
@@ -29,10 +28,10 @@ const SubCategories = ({ navigation }) => {
   console.log(SubCategory, "=====================>", "SubCategory")
 
   return (
+    <SafeAreaView>
+      <ScrollView>
     <View>
-      {/* <View style={{backgroundColor:"#077ee6"}}>
-      <Text style={{fontSize:30,fontWeight:'bold',color:"white",textAlign:"center"}}> Sub Categories </Text>
-      </View> */}
+
       {
         SubCategory[0] === null ? (
           <>
@@ -71,6 +70,8 @@ const SubCategories = ({ navigation }) => {
         )
       }
     </View>
+    </ScrollView>
+    </SafeAreaView>
   )
 }
 
