@@ -9,14 +9,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {TextInput} from 'react-native-paper';
+import React, { useState } from 'react';
+import { TextInput } from 'react-native-paper';
 import axios from 'axios';
-import {Axios} from 'react-native-axios';
+import { Axios } from 'react-native-axios';
 import Checkbox from 'expo-checkbox';
 // import reactNativeAxios from 'react-native-axios'
 
-const SignUp = ({navigation}) => {
+const SignUp = ({ navigation }) => {
   const [FirstName, setFirstName] = useState('');
   const [LastName, setLastName] = useState('');
   const [ContactNumber, setContactNumber] = useState('');
@@ -49,13 +49,13 @@ const SignUp = ({navigation}) => {
         .then(() => {
           console.log('Thanks For Registration');
           ToastAndroid.show('Thanks For Registration', ToastAndroid.LONG);
-          navigation.navigate('AuthenticationPart2');
+          navigation.navigate('Verify_Your_Account');
         })
         .catch(err => {
           // console.error(err.message)
           if (err.message === 'Request failed with status code 500') {
             Alert.alert('You Are Already Registered');
-            navigation.replace('AuthenticationPart2');
+            navigation.replace('Verify_Your_Account');
           } else {
             console.log(err.message);
           }
@@ -69,7 +69,7 @@ const SignUp = ({navigation}) => {
     <SafeAreaView>
       <StatusBar backgroundColor={'#0099FF'} />
       <ScrollView>
-        <View style={{backgroundColor: '#F0F0F0'}}>
+        <View style={{ backgroundColor: '#F0F0F0' }}>
           <View>
             <View
               style={{
@@ -81,7 +81,7 @@ const SignUp = ({navigation}) => {
                 top: 30,
               }}></View>
           </View>
-          <View style={{marginTop: 50}}>
+          <View style={{ marginTop: 50 }}>
             <View style={styles.View}>
               {/* input field */}
               <TextInput
@@ -262,7 +262,7 @@ const SignUp = ({navigation}) => {
                 onValueChange={setChecked}
                 color={'#0099FF'}
               />
-              <Text style={{color: 'black', fontSize: 20}}>Hide Password</Text>
+              <Text style={{ color: 'black', fontSize: 20 }}>Hide Password</Text>
             </View>
 
             <TouchableOpacity
@@ -287,7 +287,7 @@ const SignUp = ({navigation}) => {
               </Text>
             </TouchableOpacity>
 
-            <View style={{marginTop: 8, marginBottom: 10}}>
+            <View style={{ marginTop: 8, marginBottom: 10 }}>
               <Text
                 style={{
                   fontSize: 18,

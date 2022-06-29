@@ -1,7 +1,7 @@
-import React from 'react'
-import {NavigationContainer} from '@react-navigation/native'
-import {createDrawerNavigator} from '@react-navigation/drawer'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import React, { useEffect, useState } from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import Welcome from '../Welcome'
 import SignUp from '../Auth/SignUp'
@@ -13,11 +13,17 @@ import SubCategories from '../Screens/ScreensCategories/SubCategories'
 import Categories from '../Screens/ScreensCategories/Categories'
 import Packages from '../Screens/ScreensCategories/Packages'
 import Booking from '../Screens/ScreensCategories/Booking/Booking'
+import AsyncStorageindex from '../Async Storage/AsyncStorageindex'
+import { useSelector, useDispatch } from 'react-redux'
+import { Init } from '../Redux/Actions/ActionLogin'
+import { ActivityIndicator, View } from 'react-native'
+
+
 const Stack = createNativeStackNavigator()
 
 export const Authentication = () => {
   return (
-    <NavigationContainer>
+    // <NavigationContainer>
 
     <Stack.Navigator
       screenOptions={() => ({
@@ -25,7 +31,7 @@ export const Authentication = () => {
         drawerActiveBackgroundColor: 'white',
         headerTintColor: '#077ee6',
         headerTitleAlign: 'center',
-        headerTitleStyle: {fontSize: 25},
+        headerTitleStyle: { fontSize: 25 },
       })}
     >
       <Stack.Screen name='Welcome User' component={Welcome} />
@@ -36,7 +42,7 @@ export const Authentication = () => {
       <Stack.Screen name='Verify_Your_Account' component={VerifyAcount} />
 
     </Stack.Navigator>
-    </NavigationContainer>
+    // </NavigationContainer>
   )
 }
 
@@ -57,20 +63,53 @@ export const Authentication = () => {
 
 export const Routes = () => {
   return (
+    <Stack.Navigator screenOptions={() => ({
+      headerShown: true, headerTintColor: '#077ee6',
+      headerTitleAlign: 'center',
+      headerTitleStyle: { fontSize: 25 }
+    })}>
+
+
+
+      <Stack.Screen name='Categories' component={Categories} />
+
+      <Stack.Screen name='SubCategories' component={SubCategories} />
+
+      <Stack.Screen name='Booking' component={Booking} />
+
+      <Stack.Screen name='Packages' component={Packages} />
+
+    </Stack.Navigator>
+  )
+}
+
+export const MainRoute = () => {
+  const dispatch = useDispatch()
+
+
+  const init = () => {
+    dispatch(Init());
+  }
+  useEffect(() => {
+
+    init()
+
+  }, [])
+
+
+
+  const token = useSelector(state => state.auth.token)
+  console.log(token, "===================>>>> token")
+  return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={() => ({headerShown: true,headerTintColor: '#077ee6',
-        headerTitleAlign: 'center',
-        headerTitleStyle: {fontSize: 25}})}>
 
-        <Stack.Screen name='Categories' component={Categories} />
-
-        <Stack.Screen name='SubCategories' component={SubCategories} />
-
-<Stack.Screen name='Booking' component={Booking}/>
-
-        <Stack.Screen name='Packages' component={Packages} />
-
-      </Stack.Navigator>
+      {
+        token == null ? <Authentication /> : <Routes />
+      }
     </NavigationContainer>
   )
 }
+
+
+
+

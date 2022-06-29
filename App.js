@@ -1,15 +1,15 @@
 
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Authentication, Routes } from './Source/Config/Route'
-import Categories from './Source/Screens/ScreensCategories/Categories'
-import Welcome from './Source/Welcome'
+import { MainRoute } from './Source/Config/Route'
+import { Provider } from 'react-redux'
+import Store from "./Source/Store/index"
 const App = () => {
   return (
-      <Routes/>
+    <Provider store={Store}>
+      <MainRoute />
+    </Provider>
   )
 }
 
 export default App
 
-const styles = StyleSheet.create({})

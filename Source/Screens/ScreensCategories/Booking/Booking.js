@@ -1,29 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Booking = () => {
   const route = useRoute()
-  let { packageId } = route.params
-  let { SubCategoryId } = route.params
-  const [booking, setBooking] = useState([])
-  const [Package_Id, setPackage_Id] = useState(packageId)
-  const [SubCategory_Id, subSubCategory_Id] = useState(SubCategoryId)
-  const [BookingNo, setBookingNo] = useState("")
-  const [Booking_Status, setBooking_Status] = useState("pending")
+  let { BookingNo } = route.params
+  const [booking, setBooking] = useState([null])
+
 
   useEffect(() => {
 
-    console.log(SubCategoryId, "====>>>>>>>", "SubCategoryId")
 
-    console.log(packageId, "==========>", "route")
 
-    axios.get(`http://10.0.2.2:9090/Package/getById/${packageId}`)
+
+    axios.get(`http://10.0.2.2:9090/Booking/getBooking/${BookingNo}`)
       .then(res => {
-        const Booking = res.data;
-        setBooking([Booking.Packages])
-        console.log(Booking.Packages)
+        const BookingData = res.data;
+        setBooking(BookingData.Booking)
+        console.log(BookingData.Booking)
 
       }).catch((error) => {
         console.error(error.message)
@@ -32,14 +28,55 @@ const Booking = () => {
   }, [])
 
   console.log(booking, "=====================>", "booking")
-  console.log("Booking Tab")
   return (
-    <View>
-      <Text>Booking</Text>
-    </View>
+    <SafeAreaView style={{ margin: 10 }}>
+      <ScrollView>
+        <View>
+          {
+            booking[0] === null ? (
+              <>
+                <View>
+                  <Text style={{ fontSize: 30, fontWeight: "bold", color: "black", textAlign: "center" }}>
+                    Error No Data Found
+                  </Text>
+                </View>
+              </>
+
+            ) : (
+              booking.map(({ PackageName, PackagePrice, BookingNo, Booking_Status }, index) => (
+                <View style={{ margin: 6, borderWidth: 5, backgroundColor: "lightblue" }} key={index} >
+                  <Text style={styles.textPart1}> Name:-   <Text style={styles.textPart2}>{PackageName}</Text>  </Text>
+
+                  <Text style={styles.textPart1}>  Price:-   <Text style={styles.textPart2}>  {PackagePrice}  </Text> </Text>
+
+                  <Text style={styles.textPart1}>  BookingNo:-   <Text style={styles.textPart2}>  {BookingNo}  </Text> </Text>
+
+                  <Text style={styles.textPart1}>  BookingStatus:-   <Text style={styles.textPart2}>  {Booking_Status}  </Text> </Text>
+
+                </View>
+              ))
+            )
+          }
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
 export default Booking
 
-// const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textPart1: {
+    fontSize: 25,
+    color: "blue",
+    fontWeight: "900",
+    margin: 2
+  },
+  textPart2: {
+    fontSize: 20,
+    color: "black",
+    fontWeight: "900",
+    margin: 2,
+    textAlign: 'right'
+  }
+})

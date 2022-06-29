@@ -8,16 +8,17 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
-import {TextInput} from 'react-native-paper';
+import React, { useState } from 'react';
+import { TextInput } from 'react-native-paper';
 import Checkbox from 'expo-checkbox';
 import axios from 'axios';
-
-const SignIn = ({navigation}) => {
+import { useDispatch } from 'react-redux';
+import { Login } from '../Redux/Actions/ActionLogin';
+const SignIn = ({ navigation }) => {
   const [UserName, setUserName] = useState('');
   const [Password, setPassword] = useState('');
   const [isChecked, setChecked] = useState(true);
-
+  const dispatch = useDispatch()
   const handleSignIn = () => {
     if (UserName != '' && Password != '') {
       axios
@@ -26,9 +27,14 @@ const SignIn = ({navigation}) => {
           Password: Password,
         })
         .then(result => {
+          const token = result.data.Token
+          const contactNumber = result.data.ContactNumber
           console.log(result.data.Token);
-          navigation.replace("Verify_Your_Account")
-          // ToastAndroid.show("Thanks For Registration",ToastAndroid.LONG)
+          console.log(result.data.ContactNumber);
+          dispatch(Login(token, contactNumber))
+
+
+
         })
         .catch(err => {
           console.error(err.message);
@@ -43,13 +49,14 @@ const SignIn = ({navigation}) => {
     } else {
       Alert.alert('Presence Alert', '* Fill All The Field !');
     }
+
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: '#F0F0F0'}}>
+    <SafeAreaView style={{ backgroundColor: '#F0F0F0' }}>
       <StatusBar backgroundColor={'#0099FF'} />
       <ScrollView>
-        <View style={{backgroundColor: '#F0F0F0'}}>
+        <View style={{ backgroundColor: '#F0F0F0' }}>
           <View>
             <View
               style={{
@@ -61,7 +68,7 @@ const SignIn = ({navigation}) => {
                 top: 30,
               }}></View>
           </View>
-          <View style={{marginTop: 50}}>
+          <View style={{ marginTop: 50 }}>
             <View style={styles.View}>
               {/* input field */}
               <TextInput
@@ -114,19 +121,19 @@ const SignIn = ({navigation}) => {
             </View>
 
 
-<View style={styles.section2}>
-  <Text style={{color: '#000', fontSize: 22,textAlign: 'center'}} onPress={()=>{navigation.navigate("Forget Password")}} > Forgot Password</Text>
-</View>
+            <View style={styles.section2}>
+              <Text style={{ color: '#000', fontSize: 22, textAlign: 'center' }} onPress={() => { navigation.navigate("Forget Password") }} > Forgot Password</Text>
+            </View>
 
 
-<View style={styles.section}>
+            <View style={styles.section}>
               <Checkbox
                 style={styles.checkbox}
                 value={isChecked}
                 onValueChange={setChecked}
                 color={'#0099FF'}
               />
-              <Text style={{color: 'black', fontSize: 20}}>Hide Password</Text>
+              <Text style={{ color: 'black', fontSize: 20 }}>Hide Password</Text>
             </View>
 
             <TouchableOpacity
@@ -150,7 +157,7 @@ const SignIn = ({navigation}) => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={{margin: 10}} />
+          <View style={{ margin: 10 }} />
         </View>
       </ScrollView>
     </SafeAreaView>

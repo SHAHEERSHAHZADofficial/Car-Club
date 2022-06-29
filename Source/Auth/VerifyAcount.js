@@ -2,8 +2,9 @@ import { Alert, SafeAreaView, StyleSheet, Text, ToastAndroid, TouchableOpacity, 
 import React, { useState } from 'react'
 import { TextInput } from 'react-native-paper'
 import axios from 'axios'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const VerifyAcount = () => {
+const VerifyAcount = ({ navigation }) => {
   const [ContactNumber, setContactNumber] = useState("")
 
   const phoneNumbersVerification = () => {
@@ -16,10 +17,13 @@ const VerifyAcount = () => {
         .then((response) => {
           console.log(response.data)
           Alert.alert("Your Account Is Verified")
+          navigation.replace("Sign In")
         })
         .catch((error) => {
           console.error(error)
         })
+
+      AsyncStorage.setItem("@NewBookingNumber", ContactNumber)
 
     } else {
       Alert.alert('Presence Alert', '* Enter Phone Number!');
