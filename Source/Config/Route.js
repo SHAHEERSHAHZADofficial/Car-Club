@@ -17,6 +17,8 @@ import AsyncStorageindex from '../Async Storage/AsyncStorageindex'
 import { useSelector, useDispatch } from 'react-redux'
 import { Init } from '../Redux/Actions/ActionLogin'
 import { ActivityIndicator, View } from 'react-native'
+import PayWithCard from '../Screens/Screen/PayWithCard'
+import FeedBack from '../Screens/Screen/FeedBack'
 
 
 const Stack = createNativeStackNavigator()
@@ -46,20 +48,7 @@ export const Authentication = () => {
   )
 }
 
-// export const SubCategory = () => {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={() => ({
-//         headerShown: true,
-//         headerTintColor: '#077ee6',
-//         headerTitleAlign: 'center',
-//         headerTitleStyle: {fontSize: 25},
-//       })}
-//     >
-//         <Stack.Screen name='Sub' component={SubCategories} />
-//     </Stack.Navigator>
-//   )
-// }
+
 
 export const Routes = () => {
   return (
@@ -78,6 +67,10 @@ export const Routes = () => {
       <Stack.Screen name='Booking' component={Booking} />
 
       <Stack.Screen name='Packages' component={Packages} />
+
+      <Stack.Screen name='PayWithCard' component={PayWithCard} />
+
+      <Stack.Screen name='FeedBack' component={FeedBack} />
 
     </Stack.Navigator>
   )

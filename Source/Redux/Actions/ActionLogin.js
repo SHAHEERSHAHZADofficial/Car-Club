@@ -28,10 +28,12 @@ function Init() {
 
 
 
-function Login(token, contactNumber) {
+function Login(token, contactNumber, id, Name) {
     const login_token = token
     const BookingNumber = contactNumber.toString()
     const BookingId = BookingNumber
+    const UserId = id
+    const UserName = Name.toString()
     return async dispatch => {
         if (login_token !== null) {
             await AsyncStorage.setItem("@token", login_token)
@@ -51,6 +53,26 @@ function Login(token, contactNumber) {
                     console.log(" Token Not Stored ")
                 });
         }
+
+
+        if (UserId !== null) {
+            await AsyncStorage.setItem("@UserId", UserId)
+                .then((result) => {
+                    console.log("Token Stored ")
+                }).catch((err) => {
+                    console.log(" Token Not Stored")
+                });
+        }
+
+        if (UserName !== null) {
+            await AsyncStorage.setItem("@UserName", UserName)
+                .then((result) => {
+                    console.log("Token Stored ")
+                }).catch((err) => {
+                    console.log(" Token Not Stored")
+                });
+        }
+
         dispatch({
             type: "LOGIN",
             payload: login_token

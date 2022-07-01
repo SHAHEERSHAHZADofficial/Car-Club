@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.carclub">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.INTERNET"/>
+
+<!-- <provider android:authorities="com.facebook.app.FacebookContentProvider718945329340422"
+    android:name="com.facebook.FacebookContentProvider"
+    android:exported="true" /> -->
 
     <application
       android:name=".MainApplication"
@@ -10,7 +14,13 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
-      <activity
+
+
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
+    
+    
+          <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
         android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
@@ -22,5 +32,6 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
+      <!-- <activity android: name="com.facebook. react.devsupport.DevSettingsActivity"/> -->
     </application>
 </manifest>

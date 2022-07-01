@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CarClub</string>
+<string name="facebook_app_id">1222436241911626</string>
+<string name="facebook_client_token">c9507a9d650cb983d703d9dabc0cbf35</string>
 </resources>

@@ -133,7 +133,7 @@ const Packages = ({ navigation }) => {
                           PackagePrice: PackagePrice
                         })
                         .then((result) => {
-                          console.warn(result.data);
+                          console.log(result.data);
                         }).catch((err) => {
                           console.error(err);
                         });

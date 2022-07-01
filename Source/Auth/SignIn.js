@@ -29,9 +29,10 @@ const SignIn = ({ navigation }) => {
         .then(result => {
           const token = result.data.Token
           const contactNumber = result.data.ContactNumber
+          const id = result.data._id
           console.log(result.data.Token);
           console.log(result.data.ContactNumber);
-          dispatch(Login(token, contactNumber))
+          dispatch(Login(token, contactNumber, id, UserName))
 
 
 
